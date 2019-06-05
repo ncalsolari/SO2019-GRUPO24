@@ -24,11 +24,13 @@ void main(){
 // variaveis de controle
 	double x ;
 	double y ;
-	int controle = 0;
-	int iteracoes = 1000000;
+	//int controle = 0;
+	//int iteracoes = 1000000;
 
 	mpf_t pi;
 	mpf_t var_pin;
+	mpf_t controle;
+	mpf_t iteracoes;
 	
 	
 	
@@ -36,6 +38,11 @@ void main(){
 	//inicia valroes das variaveis
 	mpf_init(pi);
 	mpf_init(var_pin);
+	mpf_init(controle);
+	mpf_init(iteracoes);
+
+
+	mpf_init_set_d(iteracoes,1000000);
 	
 	
 
@@ -44,11 +51,9 @@ void main(){
 
 	while(controle<iteracoes){
 
-		// calcula um numero entre 0 e 1 com precisao de 7 casas decimais
-		x = (rand() % 10000001);
-		y = (rand() % 10000001);
-		x = x/10000000;
-		y = y/10000000;
+		// calcula um numero entre 0 e 1 
+		x = drand48();
+		y = dand48();
 		
 
 		if(((x*x) + (y*y)) < 1){
