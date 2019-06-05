@@ -1,6 +1,6 @@
 /*
 Para compilação no linux, lembrar de incluir as bibliotecas, como descrito abaixo. 
-- gcc nome_programa.c -o nome_programa - lm -lgmp
+- gcc nome_programa.c -o nome_programa -lm -lgmp
  */
 
 
