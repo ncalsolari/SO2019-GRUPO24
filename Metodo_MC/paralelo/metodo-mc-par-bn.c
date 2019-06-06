@@ -1,96 +1,108 @@
 
 #include <stdio.h>
-#include <pthread.h>
 #include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <pthread.h>
+#include <time.h>
+#include <gmp.h>
 
- 	int numthreads = 10;  // Numero total de threads
+//para compilar usar gcc metodo-mc-par-bn.c -o metodomcparbn -lm -lgmp -lpthread
+
+
+
+
+	int numthreads = 10;// nmero total de threads
+	int nm_iteracoes = 100000;
+
+
 	mpf_t pi;
-	mpf_t var_pin [10];  // Total de pontos da thread 
-	mpf_t var_iteracao_total [10];  // Pontos no circulo
+	mpf_t var_pin [10];  // Total de pontos no circulo p analise dentro das threads
+	mpf_t totalpin; // numero total de pontos dentro do circulo
 
+	void *check (void *indice); // sorteia e verifica os pnts nas threads
 
-	mpf_init(pi);
-	mpf_init(var_pin);
-	mpf_init(var_iteracao_total);
-
-	void *check (void *param); // sorteia e verifica os pnts nas threads
  
- 
-
 	int main (int argc, char *argv[]){
 
-	srand(time(NULL));
-
-	int pontos_threads_total = 0; // total de pontos
-	int pontos_threads_check = 0; // pontos no circulo
-	pthread_t thread_name[10];  // ID das threads
- 
- 
-	// Para todas as threads      
-	for(int i=0; i<numthreads; i++){
-	// cria a i-esima thread
-		pthread_create(&tid[i],NULL, check, &i);
-	}
-
-	**********************************************
- 
-	// Para cada thread 
-	for (i = 0; i< NUMTHR ; i++){
-	// espera que as threads terminem
-	pthread_join (tid[i], NULL);
-       }	
- 
-      for (i = 0; i< NUMTHR ; i++){
-          totalp += num_ptos[i];  // totalp = totalp + num_ptos[i]
-          totalc += num_ptos_cir[i]; // totalc = totalp + num_ptos[i]
-       }	
- 
- 
-// Calcula o valor de pi e imprime na tela	
-	pi = 4.0*(((double)totalc)/((double)totalp)); // transforma totalp
-						      // e totalc em double
-							
-	printf("Valor de pi:%fn\n",pi);
-}
- 
- 
- 
- 
- 
-void *calcula (void *param) {
- 
-	int i;
-	int thrnum = *((int *)param); // O número da thread ()
-	double x,y,quad;
-	num_ptos[thrnum] = 0;
-	num_ptos_cir[thrnum] = 0;
- 
-	for (i = 0; i<1000000000; i++){
- 
-		x = drand48(); // sorteia um número de 0 a 1
-		y = drand48(); // sorteia um número de 0 a 1
+		srand(time(NULL)); // garante a aleatoriedade
+	
 
 
-		printf("x eh: %lf\n",x );
-		printf("y eh: %lf\n",y );
+		int pontos_threads_total = numthreads*nm_iteracoes; // total de pontos
+		int pontos_threads_check = 0; // pontos no circulo
+		pthread_t thread_name[10];  // ID das threads
 
-		quad = ((x*x) + (y*y));
-		// Se a soma dos quadrados for menor que R = 1
-		// então caiu no círculo		
-		if (quad <= 1){
-			num_ptos_cir[thrnum] ++; // conta pontos no círculo		
+
+
+		mpf_init (totalpin);
+		mpf_init(pi);
+
+
+		for(int i=0; i<numthreads; i++){ //todas as threads
+
+			pthread_create(&thread_name[i],NULL, check, &i); //cria as threads
 		}
+
+	 
+		for(int i = 0; i<numthreads; i++){
+			pthread_join(thread_name[i], NULL);
+		}
+
+		for(int i = 0; i<numthreads; i++){ // soma todos os pontos que cairam no circulo de todas as threads
+			mpf_add(totalpin,totalpin,var_pin[i]);
+		}
+
+		//calculo de pi
+		mpf_add(pi,totalpin,totalpin); 
+		mpf_add(pi,pi,totalpin);
+		mpf_add(pi,pi,totalpin); //pi = 4*pin
+
+		mpf_div_ui(pi,pi,pontos_threads_total);  // pi/numero de iteracoes
+		
+
+		//impreime pi
+		gmp_printf("Valor de pi: %.6Ff\n",pi);
+ }
  
-		num_ptos[thrnum] ++; // incrementa os pontos totais da thread N (0 a 9)
  
-		// A cada 10 mil iterações imprime na tela
-                if (i%10000==0)
-                        printf("thread: %i n\n",thrnum);
+ 
+ 
+
+ 
+void *check (void *indice){
+
+	
+	double x;
+	double y;
+
+	int thread_indice = *((int *)indice);
+	
+	mpf_init(var_pin [thread_indice]);
+	
+
+	for(int i = 0; i  < nm_iteracoes; i++){
+
+		
+		// calcula um numero entre 0 e 1 com precisao de 7 casas decimais
+		x = (rand() % 10000001);
+		y = (rand() % 10000001);
+		x = x/10000000;
+		y = y/10000000;
+
+		
+
+		if( ((x*x) + (y*y)) < 1){
+
+			mpf_add_ui(var_pin[thread_indice],var_pin[thread_indice],1);
+			//gmp_printf("Valor de pin[%d]:  %.6Ff\n", thread_indice,var_pin[thread_indice]);
+
+		}
+
 	}
- 
-	// Imprime na tela a qtde de pontos no círculo
-	// e no total de cada thread 
-	printf ("Circ t%i:%dn\n",thrnum,num_ptos_cir[thrnum]);
-	printf ("Total t%i:%dn\n\n\n",thrnum,num_ptos[thrnum]);	
+
+
 	pthread_exit(0);
+
 }
+

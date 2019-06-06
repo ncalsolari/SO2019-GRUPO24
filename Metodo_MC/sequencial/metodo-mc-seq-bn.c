@@ -14,8 +14,6 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 
 
 
-
-
 void main(){
 
 	mpf_set_default_prec(pow(10,5));
@@ -50,6 +48,15 @@ void main(){
 
 
 	while(controle<iteracoes){
+
+	/* se der erro usa esse jeito de calcular x e y
+		x = (rand() % 10000001);
+		y = (rand() % 10000001);
+		x = x/10000000;
+		y = y/10000000;
+
+		*/
+
 
 		// calcula um numero entre 0 e 1 
 		x = drand48();
