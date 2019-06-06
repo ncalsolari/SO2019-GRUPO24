@@ -25,6 +25,9 @@
  
 	int main (int argc, char *argv[]){
 
+
+		mpf_set_default_prec(pow(10,5));
+
 		srand(time(NULL)); // garante a aleatoriedade
 	
 
@@ -72,6 +75,7 @@
  
 void *check (void *indice){
 
+	mpf_set_default_prec(pow(10,5));
 	
 	double x;
 	double y;
