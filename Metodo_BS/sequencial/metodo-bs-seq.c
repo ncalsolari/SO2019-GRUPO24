@@ -13,26 +13,58 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 #include <time.h>
 
 
-	int main(){
+	void main(){
+
+		srand(time(NULL));
+
+		int var_m;
+
+		double var_s, var_e, r, var_t;
+
+		double sigma, t, media, media2, stddev, intervalo, conf_min, conf_max;
 
 
 
-		double exponencial1 = (r(-0.5*sigma*sigma));
-		double exponencial2 = (-1)*r*var_t
+		scanf("%lf %lf %lf %lf %lf %d", &var_s, &var_e, &r, &sigma, &var_t, &var_m );
+		
+
+		
+		
+
+		double vetor[var_m];
+
+		double nmero_aleatorio;
+
+			media2=0;
+			media = 0;
 
 
-		for(int i=0; i<M ; i++){
-
-
-
-			t= (s*pow(M_E,exponencial1)*var_t + sigma*sqrt(var_t)*nmero_aleatorio);
-
-			vetor[i]= pow(M_E,exponencial2)*fmax((t-E),0);
 
 
 
 
+		//calculando o t temporario
+		for(int i=0; i<var_m ; i++){
 
+		
+			nmero_aleatorio= (rand() % 10000001);
+
+			nmero_aleatorio = nmero_aleatorio / 10000000;
+
+
+
+			double exponencial1 = var_t*(r-(0.5*sigma*sigma)) + (sigma*sqrt(var_t)*nmero_aleatorio);
+
+			t = (var_s*pow(M_E,exponencial1));
+
+
+
+
+			double exponencial2 = (-1)*r*var_t;
+
+			vetor[i]= pow(M_E,exponencial2)*fmax((t - var_e),0);
+
+			
 
 
 
@@ -40,20 +72,52 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 
 
 
+		//calculando a media 
+		for(int j=0; j<var_m ; j++){
+
+			media= media + vetor[j];
+
+
+		}
+
+		media = media / (double)var_m;
+		printf("media %lf\n",media);
 
 
 
+		//calculando o desvio padrao nao enviesado
+		for(int k = 0; k < var_m ; k++){
+
+			media2= media2 + ((vetor[k] - media)*(vetor[k] - media));
+
+		}
+
+		media2 = media2 / (((double)var_m ) - 1);
+		printf("media2 %lf \n",media2 );
 
 
+	
+		stddev = sqrt(media2);
+		printf("stddev %lf\n",stddev );
 
 
+		//intervalo confianca
+		intervalo = 1.96*(stddev/(double)sqrt(var_m));
+		printf("%lf\n", intervalo );
+
+		conf_max= media + intervalo;
+
+		conf_min= media - intervalo;
 
 
+		printf("\nS:%lf \n", var_s);
+		printf("E:%lf \n", var_e);
+		printf("r:%lf \n", r);
+		printf("sigma:%lf \n", sigma);
+		printf("T:%lf \n", var_t);
+		printf("M:%d \n\n", var_m);
 
-
-
-
-
+		printf("O intervalo de confianca e: %lf ~ %lf\n", conf_min, conf_max);
 
 
 
