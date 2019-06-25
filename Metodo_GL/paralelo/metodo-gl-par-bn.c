@@ -80,10 +80,7 @@ void main(){
 	
 	while(i<10000){
 		
-	printf("%d\n", 10000 - i );
-
-
-
+	
 
 	pthread_create(&thread_name[0],NULL, calc_a1, &i); //cria as threads
 

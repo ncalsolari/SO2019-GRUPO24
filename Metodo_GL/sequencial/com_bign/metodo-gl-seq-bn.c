@@ -58,9 +58,8 @@ void main(){
 	int i = 0;
 	
 	
-	while(i<1000000000){
+	while(i<10000){
 		
-			printf("%d\n", 1000000000 - i );
 			//a1 = (a+b)/2
 		mpf_add(var_a1,var_a,var_b);
 		mpf_div_ui(var_a1,var_a1,2);

@@ -116,7 +116,7 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 		printf("T:%lf \n", var_t);
 		printf("M:%d \n\n", var_m);
 
-		printf("Confidence Interval: %lf, %lf\n", conf_min, conf_max);
+		printf("Confidence Interval: (%lf, %lf)\n", conf_min, conf_max);
 
 
 
