@@ -10,7 +10,7 @@ Para o método paralelo foi utilizada a biblioteca _pthread.h_
 
 *À QUESITO DE COMPILAÇÃO*
 
-Para compilação no linux, foi utilizada tais comandos. 
+Para compilação no linux, foi utilizada tais comandos:  
  gcc nome_programa.c -o nome_programa -lm -lgmp -lpthread
  
  
