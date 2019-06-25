@@ -4,7 +4,7 @@
 Foram utilizados 3 métodos(Gauss-Legendre, Monte Carlos, Borwein) para o cáculo de pi, utilizando programação sequencial e paralela nos 3 metódos.
 Um modelo de BlackScholes utilizando o algoritmo de Monte Carlo foi implementado.
 Foi utilizado a biblioteca GMP para trabalhar com BigNumbers e obter maior precisão.
-Para o método paralelo foi utilizada a biblioteca #include <pthread.h>
+Para o método paralelo foi utilizada a biblioteca _pthread.h_
 
 ---
 
