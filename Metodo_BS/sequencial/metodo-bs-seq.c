@@ -102,7 +102,7 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 
 		//intervalo confianca
 		intervalo = 1.96*(stddev/(double)sqrt(var_m));
-		printf("%lf\n", intervalo );
+		
 
 		conf_max= media + intervalo;
 
