@@ -16,7 +16,7 @@ Para compilação no linux, foi utilizada tais comandos.
  
  
  
- *à quesito de disposição de códigos*
+ *À QUESITO DA DISPOSIÇÃO DOS CÓDIGOS*
  
  Cada pasta representa um método:
  - BS (BlasckScholes)
