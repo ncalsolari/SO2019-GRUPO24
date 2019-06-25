@@ -81,7 +81,7 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 		}
 
 		media = media / (double)var_m;
-		printf("media %lf\n",media);
+	
 
 
 
@@ -93,12 +93,11 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 		}
 
 		media2 = media2 / (((double)var_m ) - 1);
-		printf("media2 %lf \n",media2 );
-
+		
 
 	
 		stddev = sqrt(media2);
-		printf("stddev %lf\n",stddev );
+	
 
 
 		//intervalo confianca
@@ -117,7 +116,7 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 		printf("T:%lf \n", var_t);
 		printf("M:%d \n\n", var_m);
 
-		printf("O intervalo de confianca e: %lf ~ %lf\n", conf_min, conf_max);
+		printf("Confidence Interval: %lf, %lf\n", conf_min, conf_max);
 
 
 

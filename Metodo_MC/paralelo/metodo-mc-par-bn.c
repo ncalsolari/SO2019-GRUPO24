@@ -12,12 +12,12 @@
 
 
 
-	int numthreads = 10;// nmero total de threads
+	int numthreads = 4;// nmero total de threads
 	int nm_iteracoes = 100000;
 
 
 	mpf_t pi;
-	mpf_t var_pin [10];  // Total de pontos no circulo p analise dentro das threads
+	mpf_t var_pin [4];  // Total de pontos no circulo p analise dentro das threads
 	mpf_t totalpin; // numero total de pontos dentro do circulo
 
 	void *check (void *indice); // sorteia e verifica os pnts nas threads
@@ -34,7 +34,7 @@
 
 		int pontos_threads_total = numthreads*nm_iteracoes; // total de pontos
 		int pontos_threads_check = 0; // pontos no circulo
-		pthread_t thread_name[10];  // ID das threads
+		pthread_t thread_name[4];  // ID das threads
 
 
 
@@ -66,6 +66,9 @@
 
 		//impreime pi
 		gmp_printf("Valor de pi: %.6Ff\n",pi);
+
+		mpf_clear (totalpin);
+		mpf_clear(pi);
  }
  
  

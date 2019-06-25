@@ -22,12 +22,12 @@ void main(){
 // variaveis de controle
 	double x ;
 	double y ;
-	//int controle = 0;
+	int controle = 0;
 	//int iteracoes = 1000000;
 
 	mpf_t pi;
 	mpf_t var_pin;
-	mpf_t controle;
+	//mpf_t controle;
 	mpf_t iteracoes;
 	
 	
@@ -36,7 +36,7 @@ void main(){
 	//inicia valroes das variaveis
 	mpf_init(pi);
 	mpf_init(var_pin);
-	mpf_init(controle);
+	//mpf_init(controle);
 	mpf_init(iteracoes);
 
 
@@ -47,20 +47,11 @@ void main(){
 	
 
 
-	while(controle<iteracoes){
-
-	/* se der erro usa esse jeito de calcular x e y
-		x = (rand() % 10000001);
-		y = (rand() % 10000001);
-		x = x/10000000;
-		y = y/10000000;
-
-		*/
-
+	while(controle<1000000){
 
 		// calcula um numero entre 0 e 1 
 		x = drand48();
-		y = dand48();
+		y = drand48();
 		
 
 		if(((x*x) + (y*y)) < 1){
@@ -69,7 +60,7 @@ void main(){
 		}
 	
 
-		controle++;
+		controle ++;
 
 	
 	}
@@ -81,11 +72,16 @@ void main(){
 	mpf_add(pi,pi,var_pin);
 	mpf_add(pi,pi,var_pin);
 
-	mpf_div_ui(pi,pi,iteracoes);
+	mpf_div(pi,pi,iteracoes);
 
 
 	//printa pi
 	gmp_printf("Valor de pi: %.6Ff\n",pi);
+
+
+	mpf_clear(pi);
+	mpf_clear(var_pin);
+	mpf_clear(iteracoes);
 
 	
 }

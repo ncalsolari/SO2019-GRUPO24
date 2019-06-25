@@ -106,13 +106,32 @@ void main(){
 		i++;
 		
 		
-		//printa pi
-		gmp_printf("Valor de pi: %.6Ff\n",pi);
-		
-		
+
+
+
 	
 
 	}
+
+
+		//printa pi
+		gmp_printf("Valor de pi: %.6Ff\n",pi);
+
+
+
+	mpf_clear(pi);
+	mpf_clear(var_a);
+	mpf_clear(var_b);
+	mpf_clear(var_t);
+	mpf_clear(var_p);
+	mpf_clear(var_a1);
+	mpf_clear(var_b1);
+	mpf_clear(var_t1);
+	mpf_clear(var_p1);
+	
+		
+		
+
 	
 	
 	

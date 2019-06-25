@@ -91,7 +91,7 @@ void main(){
 	pthread_create(&thread_name[1],NULL, calc_b1, &i); //cria as threads
 
 	
-	//pthread_create(&thread_name[2],NULL, calc_t1, &i); //cria as threads
+	
 
 	
 	pthread_create(&thread_name[3],NULL, calc_p1, &i); //cria as threads
@@ -103,7 +103,6 @@ void main(){
 
 	pthread_join(thread_name[1], NULL);
 
-	//pthread_join(thread_name[2], NULL);
 
 	pthread_join(thread_name[3], NULL);
 
@@ -146,7 +145,21 @@ void main(){
 	}
 	//printa pi
 		gmp_printf("Valor de pi: %.15Ff\n",pi);
-		
+
+
+
+
+
+	mpf_clear(pi);
+	mpf_clear(var_a);
+	mpf_clear(var_b);
+	mpf_clear(var_t);
+	mpf_clear(var_p);
+	mpf_clear(var_a1);
+	mpf_clear(var_b1);
+	mpf_clear(var_t1);
+	mpf_clear(var_p1);
+	
 	
 	
 	
@@ -163,9 +176,7 @@ void *calc_a1 (void *indice){
 
 	mpf_set_default_prec(pow(10,5));
 	
-	//int thread_indice = *((int *)indice);
-	
-	
+
 	//a1 = (a+b)/2
 	mpf_add(var_a1,var_a,var_b);
 	mpf_div_ui(var_a1,var_a1,2);
@@ -185,8 +196,6 @@ void *calc_b1 (void *indice){
 
 	mpf_set_default_prec(pow(10,5));
 	
-	//int thread_indice = *((int *)indice);
-
 	//b1 = sqrt(a*b)
 		mpf_mul(var_b1,var_a,var_b);
 		mpf_sqrt(var_b1,var_b1);
@@ -204,8 +213,7 @@ void *calc_t1 (void *indice){
 
 
 	mpf_set_default_prec(pow(10,5));
-	
-	//int thread_indice = *((int *)indice);
+
 
 	//t1= t-p(a-a1)^2
 		mpf_sub(var_t1,var_a,var_a1);
@@ -226,7 +234,7 @@ void *calc_p1 (void *indice){
 
 	mpf_set_default_prec(pow(10,5));
 	
-	//int thread_indice = *((int *)indice);
+
 
 	//p1 = 2*p
 		mpf_add(var_p1,var_p,var_p);
