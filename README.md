@@ -24,5 +24,6 @@ Para compilação no linux, foi utilizada tais comandos:
  - GL (Gauss-Legendre)
  - MC (Monte Carlo)
  
- Dentro das pastas há duas pastas (sequencial e paralelo), no GL possui implementação dem a utilização dos BigNumbers, 
+ Dentro das pastas há duas pastas (sequencial e paralelo), no GL possui implementação sem a utilização dos BigNumbers, 
  mas para a avaliação considerar a versão com BigNumber.
+ Os arquivos de entrada e saída estão deviadmente dispostos em cada método já com o resultado obtido de compilações prévias.
