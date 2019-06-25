@@ -131,8 +131,7 @@ Para compilação no linux, lembrar de incluir as bibliotecas, como descrito aba
 
 			int thread_indice = *((int *)indice);
 
-			printf("%d\n", thread_indice );
-
+		
 			double nmero_aleatorio;
 
 			media2=0;
