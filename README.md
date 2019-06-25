@@ -9,10 +9,12 @@ Para o método paralelo foi utilizada a biblioteca #include <pthread.h>
 ---
 
 *à quesito de compilação*
+
 Para compilação no linux, foi utilizada tais comandos. 
  gcc nome_programa.c -o nome_programa -lm -lgmp -lpthread
  
  *à quesito de disposição de códigos*
+ 
  Cada pasta representa um método:
  - BS (BlasckScholes)
  - BW (Borwein)
